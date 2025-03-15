@@ -1,11 +1,26 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faLinkedinIn, faGoogle } from '@fortawesome/free-brands-svg-icons'
 import Button from '../components/Button'
+import { useAuth } from '../context/Authcontext'
 
 
 function Login() {
+
+  const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+    const { login } = useAuth();
+    const navigate = useNavigate()
+  
+  
+    const handleLogin = (e) => {
+      e.preventDefault();
+      login(name, password); 
+       // Fix argument order
+      navigate('/')
+    };
+
   return (
     <div>
       <div className='grid grid-cols-1 lg:grid-cols-2  border rounded-2xl w-full lg:w-250 h-150 mx-auto mt-10'>
@@ -17,11 +32,23 @@ function Login() {
         </div>
         </div>
         <div className="flex items-center justify-center">
-        <form className='space-y-5 '>
-            <input type="text" placeholder='username' className='px-10 py-3  bg-gray-200'/><br />
-            <input type="password" placeholder='password' className=' px-10 py-3  bg-gray-200' /><br />
+        <form className='space-y-5' onSubmit={handleLogin}>
+            <input 
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              type="text"
+              placeholder='username'
+              className='px-10 py-3 bg-gray-200'
+            /><br />
+            <input 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              placeholder='password'
+              className='px-10 py-3 bg-gray-200'
+            /><br />
             <div>
-              <Button label={'Login'} primary={true}/>
+              <Button  label={'Login'} primary={true}/>
             </div>
 
             <p className='ml-35 text-gray-500'><Link>forget password?</Link></p>

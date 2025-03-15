@@ -11,17 +11,22 @@ function Checkout() {
         <h2 className='text-lg font-semibold'>Shipping Information</h2>
         
         <div className="flex flex-col sm:flex-row gap-4">
-          {/* Checkbox 1 */}
-          <label className="flex items-center border-2 border-gray-500 rounded-md px-4 py-2 cursor-pointer">
-            <input type="checkbox" className="hidden" />
-            <span className="w-4 h-4 border-2 border-gray-500 rounded-md mr-2 checked:bg-blue-500" /> Delivery
-          </label>
-          {/* Checkbox 2 */}
-          <label className="flex items-center border-2 border-gray-500 rounded-md px-4 py-2 cursor-pointer">
-            <input type="checkbox" className="hidden" />
-            <span className="w-4 h-4 border-2 border-gray-500 rounded-md mr-2 checked:bg-blue-500" /> Pick up
-          </label>
-        </div>
+  {/* Radio Button 1 */}
+  <label className="flex items-center border-2 border-gray-500 rounded-md px-4 py-2 cursor-pointer">
+    <input type="radio" name="deliveryMethod" value="delivery" className="hidden peer" />
+    <span className="w-4 h-4 border-2 border-gray-500 rounded-full mr-2 peer-checked:bg-blue-500" />
+    Delivery
+  </label>
+  
+  {/* Radio Button 2 */}
+  <label className="flex items-center border-2 border-gray-500 rounded-md px-4 py-2 cursor-pointer">
+    <input type="radio" name="deliveryMethod" value="pickup" className="hidden peer" />
+    <span className="w-4 h-4 border-2 border-gray-500 rounded-full mr-2 peer-checked:bg-blue-500" />
+    Pick up
+  </label>
+</div>
+
+
 
         <input type='text' placeholder='Full Name' className='border px-4 py-2 w-full rounded-md' required />
         <input type='email' placeholder='Email Address' className='border px-4 py-2 w-full rounded-md' required />
@@ -36,9 +41,20 @@ function Checkout() {
         </select>
 
         <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
+          <div>
+          City
           <input type='text' placeholder='City' className='border px-4 py-2 rounded-md' />
+          </div>
+         <div>
+          State
           <input type='text' placeholder='State' className='border px-4 py-2 rounded-md' />
+
+         </div>
+         <div>
+          Zip code
           <input type='text' placeholder='Zip Code' className='border px-4 py-2 rounded-md' />
+
+         </div>
         </div>
         
         <label className='flex items-center space-x-2'>

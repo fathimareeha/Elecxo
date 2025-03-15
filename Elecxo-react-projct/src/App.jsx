@@ -11,6 +11,7 @@ import Productlist from './pages/Productlist'
 import { ToastContainer, toast } from 'react-toastify';
 import Productdetails from './pages/Productdetails'
 import Checkout from './pages/Checkout'
+import Protectroute from './components/protectroute'
 
 
 function App() {
@@ -25,7 +26,9 @@ function App() {
       <Route path='/' element={<Homepage/>}></Route>
        <Route path='/login' element={<Login/>}></Route>
        <Route path='/signup' element={<Signup/>}></Route>
+       <Route element={<Protectroute/>}>
        <Route path='/checkout' element={<Checkout/>}></Route>
+       </Route>
        <Route path='/product/:category' element={<Productlist/>}></Route>
        <Route path='/productdetails/:id' element={<Productdetails/>}></Route>
        </Route>

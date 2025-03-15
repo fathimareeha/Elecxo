@@ -1,5 +1,7 @@
 import React from 'react'
 import { useCart } from '../context/Cartcontext'
+import { Link } from 'react-router-dom'
+import Productdetails from '../pages/Productdetails'
 
 function Horizontalcard({product}) {
 const {addToCart}=useCart()
@@ -11,7 +13,7 @@ const {addToCart}=useCart()
         <img src={product?.image||''} alt="" height={250} width={250} />
         </div>
         <div className='space-y-2 mt-3'>
-       <h1 className='font-bold text-3xl'>{product?.name||''}</h1>
+       <Link to={`/Productdetails/${product.id}`}> <h1 className='font-bold text-3xl'>{product?.name||''}</h1></Link>
        <p className='text-2xl'>${product?.rate||''}</p>
        <p>{product?.description||''}</p>
        </div>

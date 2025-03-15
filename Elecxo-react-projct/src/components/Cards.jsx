@@ -1,5 +1,6 @@
 import React from 'react';
 import { useCart } from '../context/Cartcontext';
+import { Link } from 'react-router-dom';
 
 function Cards({ product }) {
   const { addToCart } = useCart();
@@ -19,7 +20,7 @@ function Cards({ product }) {
 
       {/* Product Details */}
       <div className='space-y-1'> {/* Reduced spacing */}
-        <p className='text-center font-bold text-md'>{product.name}</p> {/* Smaller font size */}
+        <Link to={`/productdetails/${product.id}`}><p className='text-center font-bold text-md'>{product.name}</p></Link>  {/* Smaller font size */}
         <p className='line-clamp-2 text-sm text-gray-600'>{product.description}</p> {/* Reduced line clamp */}
         <p className='font-bold text-blue-600'>${product.rate}</p>
         <p className='line-through text-xs text-gray-500'>Rs 1500</p> {/* Smaller font size */}

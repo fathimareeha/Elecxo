@@ -10,7 +10,7 @@ function CartDrawer({ isOpen, onClose }) {
   console.log("Cart Items:", cartitem);
   return (
     
-    <Drawer  placement="right" open={isOpen} noClose={onClose} className="p-4 overflow-auto" overlay={false} >
+    <Drawer  placement="right" open={isOpen} noClose={onClose} className="p-4 overflow-auto " overlay={false} >
       <div className="mb-6 flex items-center justify-between">
         <Typography variant="h5" color="blue-gray">
           Shopping Cart

@@ -1,16 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faUser, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import Searchbar from '../components/Searchbar';
 import CartDrawer from '../components/Drawerright';
 import { useCart } from '../context/Cartcontext';
 import { Link } from 'react-router-dom';
+import Profiletag from '../components/Profiletag';
 
 function Navbar() {
   const [search, setSearch] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const { cartitem } = useCart();
+  const [show,setShow]=useState(false)
+
+  const profileRef = useRef(null);
+
+   // Click outside detection for ProfileTab
+   useEffect(() => {
+    function handleClickOutside(event) {
+        if (profileRef.current && !profileRef.current.contains(event.target)) {
+            setShow(false);
+        }
+    }
+    if (show) {
+        document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+    };
+}, [show]);
 
   return (
     <>
@@ -49,16 +68,22 @@ function Navbar() {
         </div>
 
         {/* User Icon (Hidden on small screens, visible on lg screens) */}
-        <div className='hidden lg:flex items-center justify-center bg-gray-300 text-xl w-10 h-10'>
-          <FontAwesomeIcon icon={faUser} />
-        </div>
+        <div className="hidden lg:flex relative items-center justify-center bg-gray-300 text-xl w-10 h-10 ">
+  <button onClick={() => setShow((prev) => !prev)} className="flex items-center justify-center w-full h-full">
+    <FontAwesomeIcon icon={faUser} />
+  </button>
+  <div className="absolute -left-8 top-15">
+    <Profiletag show={show} setShow={setShow} />
+  </div>
+</div>
+
 
         {/* Cart Icon */}
         <button
           onClick={() => {
             setShowCart(true);
           }}
-          className='flex items-center justify-center bg-gray-300 text-xl w-10 h-10 mr-5 relative'
+          className='hidden lg:flex items-center justify-center bg-gray-300 text-xl w-10 h-10 mr-5 relative'
         >
           <FontAwesomeIcon icon={faCartShopping} />
           <div className='bg-blue-500 px-2 rounded-full absolute -top-2 -right-2 text-sm'>

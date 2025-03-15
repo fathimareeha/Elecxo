@@ -20,7 +20,7 @@ const similarproducts=electronicProducts.filter(item=>item.brand===product.brand
         <div className='space-y-6'>
    
         <h1 className='text-3xl font-bold'> {product.name}</h1>
-            <p><Rating/></p>
+            <p className='text-2xl bg-emerald-700 px-2 py-2 w-fit rounded-lg'>{product.ratings}</p>
             <p className='font-bold'>${product.rate}</p>
             <p>The Apple Watch Series 7 features a larger, more durable display, advanced health monitoring, and fast charging.</p>
             <button className='bg-black hover:bg-amber-700 hover:text-red-600 text-white px-5 py-2'>Add to cart</button>
